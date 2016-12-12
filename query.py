@@ -444,7 +444,11 @@ def json_2_redis():
 			# 导入zset文件
 			pass
 		if (key_type == "4"):
-			# 导入list文件
+			json_str = json_client.read()
+			json_obj = json.loads(json_str)
+			if (redis_client.rpush(key_name, *json_obj[key_name])):
+				printzh("导入完毕")
+				pass
 			pass
 		if (key_type == "5"):
 			# 导入hash文件
